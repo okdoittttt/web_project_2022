@@ -40,7 +40,7 @@
   
   	<!-- 4. 게시판 목록 과 게시글 입력이 가능하도록 onclick 부분을 작성하시오 -->
 		<button  type="button" class="btn btn-primary" onclick='location.href="list.do";'>게시판 목록</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button  type="button" class="btn btn-primary" onclick='location.href="insertForm.jsp";'>게시글 입력</button>
+		<button  type="button" class="btn btn-primary" onclick='location.href="insertForm.do";'>게시글 입력</button>
 	</div>
 </body>
 </html>
