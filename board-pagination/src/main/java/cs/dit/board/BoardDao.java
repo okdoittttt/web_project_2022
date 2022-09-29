@@ -20,7 +20,7 @@ public class BoardDao {
 	 * 변경이력 : 
 	 *   2022-9-11
 	 * 프로그램 설명 : board 테이블의 내용과 연동하여 게시글 관리
-	 * recodDcount() : 레코드의 개수를 세어줌.
+	 * recordCount() : 레코드의 개수를 세어줌.
 	*======================================================================*/
 
 	private Connection getConnection() throws Exception{
@@ -65,7 +65,7 @@ public class BoardDao {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 			)
 		{	pstmt.setInt(1, (page-1)*numOfRecords);
-			pstmt.setInt(2, page*numOfRecords);
+			pstmt.setInt(2, numOfRecords);
 			
 			try (ResultSet rs = pstmt.executeQuery();) {
 				while(rs.next()) {
@@ -88,7 +88,7 @@ public class BoardDao {
 			}
 		return dtos;
 	}
-	
+
 	public int recordCount() {
 		int count = 0;
 		
