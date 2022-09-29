@@ -59,7 +59,7 @@ public class MemberDao {
 	}
 	
 	public ArrayList<MemberDto> list(int page, int numOfRecords){
-		String sql = "SELECT * FROM member LIMITID ?, ?";
+		String sql = "SELECT * FROM member LIMIT ?, ?";
 		ArrayList<MemberDto> dtos = new ArrayList<MemberDto>();
 		
 		try (	Connection con = getConnection();
@@ -67,7 +67,7 @@ public class MemberDao {
 				// ResultSet rs = stmt.executeQuery(sql);
 			)
 		{	pstmt.setInt(1, (page-1)*numOfRecords);
-			pstmt.setInt(2, page*numOfRecords);
+			pstmt.setInt(2, numOfRecords);
 			
 			try (ResultSet rs = pstmt.executeQuery();){
 				while(rs.next()) {
@@ -90,7 +90,6 @@ public class MemberDao {
 			} catch (Exception e) {
 				e.printStackTrace();
 				}
-		
 		return dtos;
 	}
 	
@@ -148,13 +147,11 @@ public class MemberDao {
 	}
 	
 	public void update(MemberDto dto) {
-		String sql = "UPDATE member SET  pwd = ?, name = ?, email = ?, joinDate = ? WHERE id =?";
+		String sql = "UPDATE MEMBER SET  pwd = ?, name = ?, email = ?, joinDate = ? WHERE id =?;";
 		
 		try (
 			Connection con = getConnection();
-			//15. SQL을 준비하여 해당 커낵션에서 PreparedStatement 객체 실행 준비
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			
 		)
 		{
 			pstmt.setString(1,  dto.getPwd());
@@ -164,6 +161,7 @@ public class MemberDao {
 			pstmt.setString(5,  dto.getId());
 			
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		

@@ -24,25 +24,35 @@ public class MemberController extends HttpServlet {
 		
 		switch (com.trim()) {
 		case "index":
-			viewPage = "WEB-INF/view/index.jsp";
+			viewPage = "/WEB-INF/view/index.jsp";
 			break;
 		case "insertForm":
-			viewPage = "WEB-INF/view/insertForm.jsp";
+			viewPage = "/WEB-INF/view/insertForm.jsp";
 			break;
 		case "insert":
 			service = new MInsertService();
 			service.execute(request, response);
-			viewPage = "WEB-INF/view/list.do";
+			viewPage = "/WEB-INF/view/list.do";
 			break;
 		case "list":
 			service = new MListService();
 			service.execute(request, response);
-			viewPage = "WEB-INF/view/list.do";
+			viewPage = "/WEB-INF/view/list.jsp";
 			break;
 		case "updateForm":
 			service = new MViewService();
 			service.execute(request, response);
-			viewPage = "WEB-INF/view/updateForm.jsp";
+			viewPage = "/WEB-INF/view/updateForm.jsp";
+			break;
+		case "updateService":
+			service = new MUpdateService();
+			service.execute(request, response);
+			viewPage = "/WEB-INF/view/list.do";
+			break;
+		case "delete":
+			service = new MDeleteService();
+			service.execute(request, response);
+			viewPage = "/WEB-INF/view/list.do";
 			break;
 		}
 		

@@ -43,5 +43,32 @@
 	<input type="button" value ="홈으로" onclick ="location.href='index.do'">
 	<input type="button" value ="멤버 등록" onclick ="location.href='insertForm.do'">
 	</div>	
+	<div class="d-flex justify-content-center">
+		<ul class="pagination">
+		
+			<c:if test = "${startNum>1}">
+				<li class="page-item"><a class="page-link" href="list.do?p=${startNum-1 }">Previous</a></li>
+			</c:if>
+			<c:if test = "${startNum<=1}">
+				<li class="page-item"><a class="page-link" style="color:gray" href="#" onclick="alert('첫 페이지 입니다!')">Previous</a></li>
+			</c:if>
+			<c:forEach var="i" begin="0" end="4" step="1">
+				<c:if test = "${startNum + i <= lastNum }">
+					<c:if test = "${startNum+i == p }">
+						<li class="page-item active"><a class="page-link" href="list.do?p=${startNum+i }">${startNum+i }</a></li>
+					</c:if>
+ 					<c:if test = "${startNum+i != p }">
+						<li class="page-item"><a class="page-link" href="list.do?p=${startNum+i }">${startNum+i }</a></li>
+					</c:if>
+				</c:if>
+			</c:forEach>
+			<c:if test = "${startNum + 5 <= lastNum}">
+				<li class="page-item"><a class="page-link" href="list.do?p=${startNum+5 }">Next</a></li>
+			</c:if>
+			<c:if test = "${startNum + 5 > lastNum }">
+				<li class="page-item"><a class="page-link" style="color:gray" onclick="alert('마지막 페이지 입니다!')" href="#">Next</a></li>
+			</c:if>
+		</ul>
+	</div>
 </body>
 </html>

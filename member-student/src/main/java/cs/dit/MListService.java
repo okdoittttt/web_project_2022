@@ -11,17 +11,26 @@ public class MListService implements MemberService {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse reponse) throws ServletException, IOException {
-		int page = 1;
-		int numOfRecords = 10;
 		
 		MemberDao dao = new MemberDao();
-		
-		ArrayList<MemberDto> dtos = dao.list(page, numOfRecords);
-		
+		int numOfRecods = 10;
 		int count = dao.recordCount();
-		System.out.println(count);
+		
+		String page_ = request.getParameter("p");
+		int p = 1;
+		
+		if(page_ != null && !page_.equals(""))
+			p = Integer.parseInt(page_);
+		
+		int startNum = p-((p-1)%5);
+		int lastNum = (int)(Math.ceil((float)count / (float)numOfRecods));
+		
+		ArrayList<MemberDto> dtos = dao.list(p, numOfRecods);
 		
 		request.setAttribute("dtos", dtos);
+		request.setAttribute("p", p);
+		request.setAttribute("startNum", startNum);
+		request.setAttribute("lastNum", lastNum);
 
 	}
 

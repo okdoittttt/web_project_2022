@@ -5,23 +5,6 @@
 <%@ taglib prefix ="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ page import = "java.util.List, java.sql.Date" %>
-
-<%	
-		request.setCharacterEncoding("utf-8");
-
-		String id = request.getParameter("id");
-		
-		MemberDto dto = new MemberDto();
-		MemberDao dao = new MemberDao();
-		
-		//6. Dao의 selectOne 메소드를 사용하여 하나의 레코드만을 가져와 화면 출력
-		
-		
-		
-		//7. 해당 페이지 스코프에 "dto"라는 이름으로 검색한 레코드 한개를 저장
-		
-		
-%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +20,7 @@
 <div class="container">
 	<h2 class="text-center font-weight-bold">상세보기</h2>
 	<br/>
-	<form action="updatePro.jsp" method="post">
+	<form action="updateService.do" method="post">
 		<input type="hidden" name="id" value="${dto.id}">
 		<table class="table table-striped table-hover">
 			<tr>
@@ -54,9 +37,9 @@
 			<tr>
 				<td colspan="4">
 					<input type="submit" value ="멤버 수정" >
-					<input type="button" value ="멤버 삭제" onclick ="location.href='deletePro.jsp?id=${dto.id}'">
-					<input type="button" value ="멤버 목록" onclick ="location.href='list.jsp'">
-					<input type="button" value ="멤버 등록" onclick ="location.href='insertForm.jsp'">
+					<input type="button" value ="멤버 삭제" onclick ="location.href='delete.do?id=${dto.id}'">
+					<input type="button" value ="멤버 목록" onclick ="location.href='list.do'">
+					<input type="button" value ="멤버 등록" onclick ="location.href='insertForm.do'">
 				</td>
 			</tr>
 		</table><br><br>
